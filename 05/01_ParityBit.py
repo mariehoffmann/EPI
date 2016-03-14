@@ -1,4 +1,4 @@
-__author__ = 'Lyssa'
+__author__ = 'Marie Hoffmann ozymandiaz147@googlemail.com'
 
 # word integer in [0:2^32-1]
 def parityBit(word):
@@ -16,6 +16,7 @@ def parityBits(wordlist):
 # O(log(n)), assume word be a pos. integer of 64 bits
 # xoring every bit results in 1 if odd, else 0, also true for "partial digestions"
 # can be done from left to right or with binary partition scheme
+# same effect: reduce(lambda b1, b2: b1^b2, word_2), but linear
 def parityBit2(word):
     word ^= word >> 32 # xor first and second half, ignore 1st half
     word ^= word >> 16 # xor 1st and 2nd half of partial digest

@@ -1,4 +1,4 @@
-__author__ = 'Lyssa'
+__author__ = 'Marie Hoffmann ozymandiaz147@googlemail.com'
 
 # x & (x-1) clears lowest bit set, x & ~(x-1) extracts lowest bit
 # swap x[i] and x[j]

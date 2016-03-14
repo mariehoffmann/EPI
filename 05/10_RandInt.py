@@ -28,8 +28,8 @@ def randInt(a, b):
 
 n = 1000.
 ints = [randInt(2,4) for _ in range(int(n))]
-print("freq(2) = " + str(sum([1 for i in ints if i == 2])/n))
-print("freq(3) = " + str(sum([1 for i in ints if i == 3])/n))
-print("freq(4) = " + str(sum([1 for i in ints if i == 4])/n))
+print("freq(2) = " + str(len(filter(lambda i: i == 2, ints))/n))
+print("freq(3) = " + str(len(filter(lambda i: i == 3, ints))/n))
+print("freq(4) = " + str(len(filter(lambda i: i == 4, ints))/n))
 
 
