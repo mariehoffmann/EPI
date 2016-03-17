@@ -5,7 +5,6 @@ __author__ = 'Marie Hoffmann ozymandiaz147@googlemail.com'
 '''
 
 import heapq
-import math
 
 ECF = {
 'A':    8.167, \
