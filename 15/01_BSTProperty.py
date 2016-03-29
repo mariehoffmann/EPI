@@ -52,7 +52,8 @@ class Node(object):
         self.right = None
 
 
-# inorder traversal generates sorted list if tree has bst property
+# version 1: inorder traversal generates sorted list if tree has bst property
+# runtime O(n), space O(n)
 def inorder_traversal(node, acc):
     if node is None:
         return acc
@@ -67,14 +68,35 @@ def test_bst_property(bst):
     return all(itertools.starmap(operator.le, pairs))
 
 
+# version 2: optimize for nodes of low depth, use bfs with queue and constraint check
+# more concrete: on pop test whether nodes key is in permitted range,
+#                if true adjust key constraints for children and push
+# runtime O(n), space O(n), at most n/2 nodes in queue if BST prop violated on lowest level or not at all
+def test_bst_property2(bst):
+    inf_int = 2**1000  # assume integer as type(key)
+    queue = [(bst.root, [-inf_int, inf_int])]
+    while (len(queue) > 0):
+        node, limits = queue.pop(0)
+        if node.key > limits[0] and node.key < limits[1]:
+            if node.left is not None:
+                queue.append((node.left, [limits[0], node.key]))
+            if node.right is not None:
+                queue.append((node.right, [node.key, limits[1]]))
+        else:
+            return False
+    return True
+
+
 bst = BST()
 [bst.insert(i) for i in [4,3,5,8]]
 bst.print_tree()
-print test_bst_property(bst)
+print "has BST property (inorder): ", test_bst_property(bst)
+print "has BST property (queue): ", test_bst_property2(bst)
+
 
 # manipulate keys
 bst.root.key = 10
 bst.print_tree()
-print test_bst_property(bst)
-
+print "has BST property (inorder): ", test_bst_property(bst)
+print "has BST property (queue): ", test_bst_property2(bst)
 
